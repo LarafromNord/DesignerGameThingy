@@ -11,7 +11,7 @@ public class LightInScene : MonoBehaviour
     private Rect rectReadPicture;
     bool scanActive = true;
     Color pixel;
-    public Color whitestPixel;
+    public Color lightSource;
 
     List<Color> pixels = new List<Color>();
 
@@ -23,10 +23,12 @@ public class LightInScene : MonoBehaviour
         //stores texture size
         rectReadPicture = new Rect(0, 0, rt.width, rt.height);
     }
-    private void Start()
+    private IEnumerator Start()
     {
         if (scanActive)
         {
+            yield return new WaitForSeconds(5);
+
             RenderTexture.active = rt;
 
             //reads rt
@@ -43,15 +45,16 @@ public class LightInScene : MonoBehaviour
             }
             for (int i = 0; i < pixels.Count; i++)
             {
-                if (whitestPixel == null)
+                if (lightSource == null)
                 {
-                    whitestPixel = pixels[i];
+                    lightSource = pixels[i];
                     break;
                 }
 
-                if (IsBrighter(pixels[i], whitestPixel))
+                if (IsBrighter(pixels[i], lightSource))
                 {
-                    whitestPixel = pixels[i];
+                    lightSource = pixels[i];
+                    Debug.Log(lightSource);
                 }
             }
 
