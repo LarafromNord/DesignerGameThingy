@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.HighDefinition;
+using Varjo.XR;
 
 public class LightInScene : MonoBehaviour
 {
@@ -86,6 +87,8 @@ public class LightInScene : MonoBehaviour
     {
         // Placeholder for grabbing Varjo XR-3 pass-through skybox data
         // Varjo SDK might have a function to generate a cubemap from real-world light
+
+        VarjoMixedReality.GetEnvironmentCubemapMode();s
         
         return defaultSky;
     }
